@@ -1,0 +1,18 @@
+here in this folder you can see 
+
+(1) menu.sql file .... you have to import in your mysql database
+(2) index2.php....using this file you can add and delete menu
+(3) hmenu1.php where you can see the menu output
+(4) connection.php if you change your database name and table name then you have to change that in connection.php
+
+====>in above part in hmenu1.php you can see css if you want to modify color and arrow then you can modify from there..
+
+
+Thanks we are web development company in india, So if you have any work regarding the PHP then please contact us.
+
+
+
+Thanks and regards,
+Amit Andipara
+amit.andipara@gmail.com
+Whatsapp Number: +91 9925010051

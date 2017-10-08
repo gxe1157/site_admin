@@ -156,7 +156,7 @@ function _generate_thumbnail($file_name)
 //     /* get image name on file */ 
 //     $default_avatar = 'annon_user.png';    
 //     $mysql_query    = "SELECT avatar_name FROM `user_login` WHERE `id` =".$userid;
-//     $result_set     = $this->cntlr_name->_custom_query($mysql_query)->result();
+//     $result_set     = $this->model_name->_custom_query($mysql_query)->result();
 //     $avatar_on_file = $result_set[0]->avatar_name;
 
 //     if( $avatar_on_file != $default_avatar  &&  $avatar_on_file !='' ){
@@ -168,7 +168,7 @@ function _generate_thumbnail($file_name)
 //     /* Update database */
 //     $mysql_query = "UPDATE `user_login` SET `avatar_name` = '".$imagename."' WHERE `user_login`.`id` = ".$userid;
 
-//     $this->cntlr_name->_custom_query($mysql_query);
+//     $this->model_name->_custom_query($mysql_query);
 // }
 
 

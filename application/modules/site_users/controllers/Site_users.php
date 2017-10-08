@@ -31,7 +31,7 @@ function __construct() {
 
     /* get user data */
     $update_id = $this->uri->segment(3);
-    $results_set = $this->cntlr_name->get_view_data_custom('id', $update_id,'user_login', null)->result();
+    $results_set = $this->model_name->get_view_data_custom('id', $update_id,'user_login', null)->result();
 
     $this->default['page_nav']   = "Members";     
     $this->default['username'] = count($results_set) > 0 ? $results_set[0]->username : '';
@@ -59,7 +59,7 @@ function __construct() {
 function manage()
 {
 
-    $data['columns'] = $this->cntlr_name->get_login_data();
+    $data['columns'] = $this->model_name->get_login_data();
 
     $data['custom_jscript'] = [ 'public/js/datatables.min',
                                 'public/js/site_datatable_loader',
@@ -102,7 +102,7 @@ function create()
                 /* update user_login */
                 $user_login['email']    = $this->input->post( 'email', TRUE);
                 $user_login['username'] = $this->input->post( 'username', TRUE);
-                $this->cntlr_name->update_data( 'user_login', $user_login, $update_id );  
+                $this->model_name->update_data( 'user_login', $user_login, $update_id );  
 
                 $this->_set_flash_msg("The user details were sucessfully updated.");
             } else {
@@ -118,11 +118,11 @@ function create()
                 $user_login['username']    = $new_username;
                 $user_login['email']       = $this->input->post( 'email', TRUE);
                 $user_login['password']    = $this->site_security->_hash_string('Smokey{2012}');
-                $login_id = $this->cntlr_name->insert_data( 'user_login', $user_login );
+                $login_id = $this->model_name->insert_data( 'user_login', $user_login );
 
                 /* insert a new user */
                 $data['user_id'] = $login_id;
-                $update_id = $this->cntlr_name->insert_data( 'user_main', $data );                 
+                $update_id = $this->model_name->insert_data( 'user_main', $data );                 
 
                 $this->_set_flash_msg("The user was sucessfully added.");
 
@@ -187,7 +187,7 @@ function update_password()
             $table_data = ['password' => $this->site_security->_hash_string($password)];
 
             //update the account details
-            $this->cntlr_name->update_data( 'user_login', $table_data, $update_id );
+            $this->model_name->update_data( 'user_login', $table_data, $update_id );
             $this->_set_flash_msg("The password was sucessfully updated.");
             redirect( $this->main_controller.'/create/'.$update_id);
         }
@@ -219,7 +219,7 @@ function change_account_status( $update_id, $status )
     $this->_security_check();    
 
     $table_data = ['status' => $status];
-    $this->cntlr_name->update_data( 'user_login', $table_data, $update_id );  
+    $this->model_name->update_data( 'user_login', $table_data, $update_id );  
     if( $status == 1)
         $this->_set_flash_msg("The user account was sucessfully re-activated");
 
@@ -249,8 +249,8 @@ function _process_delete( $update_id )
     /* delete account */
     // $this->_delete( $update_id );
     $table_data = [ 'is_delete' => time() ];
-    $this->cntlr_name->update_data( 'user_login', $table_data, $update_id );  
-    $this->cntlr_name->update_data( 'user_main', $table_data, $update_id );  
+    $this->model_name->update_data( 'user_login', $table_data, $update_id );  
+    $this->model_name->update_data( 'user_main', $table_data, $update_id );  
 
 }
 
