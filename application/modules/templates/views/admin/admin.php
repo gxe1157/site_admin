@@ -24,6 +24,8 @@
           href="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.15/datatables.min.css"/>
 
     <link href="<?= base_url() ?>sb-admin/css/jquery.cleditor.css" rel="stylesheet">    
+    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 
   </head>
 
@@ -46,7 +48,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-<?php if( $default['status'] > 0 ): ?>           
+  <?php if( $default['status'] > 0 ): ?>           
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
   <!-- Dash Board -->           
@@ -170,8 +172,7 @@
 
     <!-- JavaScript -->
     <script src="<?= base_url() ?>sb-admin/js/jquery-1.10.2.js"></script>
-    <script src="<?php echo base_url(); ?>sb-admin/js/jquery-migrate-1.0.0.min.js"></script>        
-
+    <script src="<?= base_url(); ?>sb-admin/js/jquery-migrate-1.0.0.min.js"></script>        
     <script src="<?= base_url() ?>sb-admin/js/bootstrap.js"></script>
 
     <div class="col-md-8 col-md-offset-3">

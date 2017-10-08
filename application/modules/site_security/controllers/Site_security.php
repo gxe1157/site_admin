@@ -1,19 +1,10 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+<?php
 class Site_security extends MX_Controller 
 {
 
 function __construct() {
-    parent::__construct();
-    
+parent::__construct();
 }
-
-
- function test_site()
- {
-    checkField("site_security", 1);
-
- }
 
 
 function _check_admin_login_details($username, $pword)
@@ -28,16 +19,19 @@ function _check_admin_login_details($username, $pword)
     }
 }
 
+function is_logged_in()
+{
+    $user_id = $this->_get_user_id();
+    return (!is_numeric($user_id)) ? true : false;
+}
+
 function _make_sure_logged_in()
 {
-    /* make sure the customer (member) is logged */
+    //make sure the customer (member) is logged
     $user_id = $this->_get_user_id();
-
     if (!is_numeric($user_id)) {
-        // $this->_set_flash_msg("You're login session has expired. To coninue please sign in.");        
-        redirect('site_dashboard/login');
+        redirect('youraccount/login');
     }
-    return $user_id;
 }
 
 function _get_user_id()
@@ -46,11 +40,13 @@ function _get_user_id()
 
     //start by checking for a session variable
     $user_id = $this->session->userdata('user_id');
+
     if (!is_numeric($user_id)) {
         //check for a valid cookie
         $this->load->module('site_cookies');
         $user_id = $this->site_cookies->_attempt_get_user_id();
     }
+
     return $user_id;
 }
 
@@ -95,9 +91,9 @@ function _make_sure_is_admin()
 {
     $is_admin = $this->session->userdata('is_admin');
     if ($is_admin==1) {
-        return TRUE;
-    } else {
-       redirect('site_security/not_allowed');
+    //     return TRUE;
+    // } else {
+    //    redirect('site_security/not_allowed');
     }
 }
 

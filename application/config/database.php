@@ -147,58 +147,62 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 
+if(ENV == 'local' )
+{
 
-$db['default'] = array(
+	$db['default'] = array(
+		'dsn'	=> '',
+		'hostname' => 'localhost',
+		'username' => 'root',
+		'password' => '',
+		'database' => 'jdmeds',	
+		'dbdriver' => 'mysqli',
 
-	'dsn'	=> '',
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => (ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+	);
 
-	'hostname' => 'localhost',
+} else {
 
-	'username' => 'mysite_jdmeds',
+	$db['default'] = array(
+		'dsn'	=> '',
+		'hostname' => 'localhost',
+		'username' => 'mysite_jdmeds',
+		'password' => 'admin{2009}',
+		'database' => 'mysite_jdmeds',	
+		'dbdriver' => 'mysqli',
 
-	'password' => 'admin{2009}',
+		// 'hostname' => 'localhost',
+		// 'username' => 'jdmedica_admin20',
+		// 'password' => 'Smokey{2012}',
+		// 'database' => 'jdmedica_medicalsupplies',
+		// 'dbdriver' => 'mysqli',	
 
-	'database' => 'mysite_jdmeds',	
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => (ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+	);
 
-	'dbdriver' => 'mysqli',
-
-
-
-	// 'hostname' => 'localhost',
-
-	// 'username' => 'root',
-
-	// 'password' => '',
-
-	// 'database' => 'jdmeds',	
-
-	// 'dbdriver' => 'mysqli',
-
-	'dbprefix' => '',
-
-	'pconnect' => FALSE,
-
-	'db_debug' => (ENVIRONMENT !== 'production'),
-
-	'cache_on' => FALSE,
-
-	'cachedir' => '',
-
-	'char_set' => 'utf8',
-
-	'dbcollat' => 'utf8_general_ci',
-
-	'swap_pre' => '',
-
-	'encrypt' => FALSE,
-
-	'compress' => FALSE,
-
-	'stricton' => FALSE,
-
-	'failover' => array(),
-
-	'save_queries' => TRUE
-
-);
+}
 

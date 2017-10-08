@@ -55,11 +55,6 @@ function send_mail( $email, $type, $mess_ecode)
     // }
 }
 
-function _security_check()
-{
-  //  $this->load->library('session');
-  //  $this->load->module('site_security');
-}
 
 function _numeric_check($update_id)
 {

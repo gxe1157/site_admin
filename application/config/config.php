@@ -48,9 +48,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 */
 
-// $config['base_url'] = "http://localhost/jdmed/";
-// $config['base_url'] = "http://www.site_admin.411mysite.com/";
-$config['base_url'] = "http://localhost/site_admind/";
+$config['base_url'] = ENV == 'local' ?
+		 "http://localhost/site_admin/" : "http://www.site_admin.411mysite.com/";
 
 
 /*

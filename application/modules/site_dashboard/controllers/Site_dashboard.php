@@ -18,8 +18,8 @@ function __construct($data = null) {
     
     /* is user logged in */
     $this->default = login_init();  
-    $this->default['page_nav']   = "Dashboard";     
-
+    $this->default['page_nav'] = "Dashboard";  
+    $this->default['flash']    =$this->session->flashdata('item');
 }
 
 
@@ -43,6 +43,67 @@ function welcome()
     $this->templates->admin($data);     
 }
 
+function contactus()
+{
+    $data['custom_jscript'] = ['public/js/contact-us',
+                                'sb-admin/js/bootstrapValidator.min'
+                              ];
+    $data['page_url'] = 'contact-us';
+    $data['view_module'] = 'site_dashboard';
+    $data['title'] = "Welcome";
+
+    $this->default['page_nav'] = "Contact Us";  
+    $this->default['page_title'] = 'Contact Us';    
+    $data['default'] =  $this->default;  
+
+    $this->load->module('templates');
+    $this->templates->admin($data);     
+}
+
+
+function contactus_ajaxPost()
+{
+    /* Send Email */
+    if( ENV != 'local' ) {
+      $from = $_POST['email'];
+      $subject = "NJPOB: Contact Us Form";
+      $message = "Time Stamp : ".convert_timestamp( time(), 'full')."\n\n";
+      foreach( $_POST as $fld_name => $fld_value){
+        $message .= $fld_name." : ".$fld_value."\n";
+      }
+      $message .= "\n\nRecord Number : ".$rec_num."\n\n";
+
+      $this->contactus_mail($from, $subject, $message);     
+    }
+}
+
+
+function contactus_mail($from, $subject, $message)     
+{
+
+    if( ENV != 'local' ) {
+        // send email to jdmedical
+        $email       = 'info@mailers.com';
+        $admin_email = 'webmaster@411mysite.com';
+        $from        = $_POST['email'];
+
+        $this->load->library('email');
+        $this->email->from( $from);
+        $this->email->to($email);
+        $this->email->cc();
+        $this->email->bcc($admin_email);
+
+        $this->email->subject($subject);
+        $this->email->message($message);
+
+        $this->email->send();
+    }
+    if ( ! $this->email->send()) {
+         // Generate log error
+         echo "Email was not sent!...";                    
+    }
+}
+
 
 function login()
 {
@@ -53,6 +114,7 @@ function login()
     $data['title'] = "Admin Login";
 
     $data['default'] =  $this->default;  
+
     $this->default['page_title'] = 'Login';
 
     $this->load->module('templates');

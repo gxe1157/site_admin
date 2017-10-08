@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+define('ENV', strpos($_SERVER['SERVER_NAME'], 'local') !== FALSE ? 'local' : 'live');
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
