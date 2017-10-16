@@ -17,7 +17,7 @@ function __construct($data = null) {
     // $this->output->enable_profiler(TRUE);
     
     /* is user logged in */
-    $this->default = login_init();  
+    // $this->default = login_init();  
     $this->default['page_nav'] = "Dashboard";  
     $this->default['flash']    =$this->session->flashdata('item');
 }
